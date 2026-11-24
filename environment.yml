@@ -1,0 +1,21 @@
+name: ts-sgimet
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - s3fs
+  - numpy
+  - pandas
+  - netCDF4
+  - matplotlib
+  - cartopy
+  - scipy
+  - pillow
+  - scikit-image
+  - shapely
+  - ipywidgets
+  - tqdm
+  - imageio
+  - pyarrow!=25.0.1
+  
