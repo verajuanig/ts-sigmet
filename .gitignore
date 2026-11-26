@@ -3,7 +3,7 @@ __pycache__/
 
 .venv/
 .env/
-ts-sigmet.egg-info
+ts_sigmet.egg-info
 
 .vscode/
 datos_goes/
