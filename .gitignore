@@ -1,8 +1,9 @@
 __pycache__/
-.conda/
-.mamba/
-venv/
-env/
+
+
+.venv/
+.env/
+*.egg-info/
 
 .vscode/
 datos_goes/
