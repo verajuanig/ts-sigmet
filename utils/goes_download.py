@@ -42,7 +42,7 @@ def find_glm_files(
     fs: s3fs.S3FileSystem,
     start_time: datetime,
     bucket_name: str,
-    minutes: int = 10
+    minutes: int = 5
 ) -> List[str]:
     """
     Lista los archivos GLM-L2-LCFA en [start_time, start_time + minutes)
@@ -157,7 +157,7 @@ def download_goes_bundle(
     target_time: datetime,
     output_dir: str | Path,
     satellite: str = "goes19",
-    glm_window_minutes: int = 10,
+    glm_window_minutes: int = 5,
     max_workers: int = 8,
     overwrite: bool = False
 ) -> Dict[str, List[Path] | Optional[Path]]:
@@ -185,7 +185,7 @@ def download_goes_bundle(
         if c13_s3:
             tasks.append((
                 "c13",
-                executor.submit(_download_single_file, fs, c13_s3, out_path / "ABI-L2-CMIPF-C13", overwrite)
+                executor.submit(_download_single_file, fs, c13_s3, Path(f"{out_path}/ABI-L2-CMIPF-C13/{target_time:%Y/%m/%d/%H}"), overwrite)
             ))
         else:
             logger.warning("No se encontró archivo ABI-L2-CMIPF C13 para el timestamp dado.")
@@ -193,7 +193,7 @@ def download_goes_bundle(
         if ctpf_s3:
             tasks.append((
                 "ctpf",
-                executor.submit(_download_single_file, fs, ctpf_s3, out_path / "ABI-L2-CTPF", overwrite)
+                executor.submit(_download_single_file, fs, ctpf_s3, Path(f"{out_path}/ABI-L2-CTPF/{target_time:%Y/%m/%d/%H}"), overwrite)
             ))
         else:
             logger.warning("No se encontró archivo ABI-L2-CTPF para el timestamp dado.")
@@ -201,7 +201,7 @@ def download_goes_bundle(
         for glm_file in glm_s3_list:
             tasks.append((
                 "glm",
-                executor.submit(_download_single_file, fs, glm_file, out_path / "GLM-L2-LCFA", overwrite)
+                executor.submit(_download_single_file, fs, glm_file, Path(f"{out_path}/GLM-L2-LCFA/{target_time:%Y/%m/%d/%H}"), overwrite)
             ))
 
         for category, future in tasks:
@@ -222,12 +222,12 @@ def download_goes_bundle(
 #Esto para la descarga de datos en full disk
 if __name__ == "__main__":
     # Ejemplo de uso
-    dt_evento = datetime(2026, 11, 20, 18, 50, tzinfo=timezone.utc)
+    dt_evento = datetime(2026, 11, 15, 18, 50, tzinfo=timezone.utc)
     archivos = download_goes_bundle(
         target_time=dt_evento,
         output_dir="../datos_goes",
         satellite="goes19",
-        glm_window_minutes=10
+        glm_window_minutes=5
     )
 
 
