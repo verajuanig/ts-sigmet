@@ -1,0 +1,20 @@
+[project]
+name = "ts-sigmet"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "cartopy>=0.26.0",
+    "imageio>=2.38.2",
+    "ipywidgets>=8.1.9",
+    "matplotlib>=3.11.2",
+    "netcdf4>=1.7.5.1.post1",
+    "numpy>=2.4.6",
+    "pandas>=3.1.1",
+    "pillow>=13.0.0",
+    "pyarrow!=25.0.1",
+    "s3fs>=2026.9.0",
+    "scikit-image>=0.26.0",
+    "scipy>=1.17.1",
+    "shapely>=2.2.0",
+    "tqdm>=4.70.1",
+]

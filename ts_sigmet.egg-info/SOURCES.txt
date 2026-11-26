@@ -1,0 +1,6 @@
+pyproject.toml
+ts_sigmet.egg-info/PKG-INFO
+ts_sigmet.egg-info/SOURCES.txt
+ts_sigmet.egg-info/dependency_links.txt
+ts_sigmet.egg-info/requires.txt
+ts_sigmet.egg-info/top_level.txt
